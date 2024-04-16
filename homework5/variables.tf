@@ -3,9 +3,12 @@ variable "region" {
   description = "provide region"
 }
 
-variable "vpc_cidr" {
-  type        = string
-  description = "vpc cidr block"
+variable vpc_settings {
+  type = list(object({
+  vpc_cidr = string
+  dns_support_host = bool
+  dns_support = bool
+  }))
 }
 
 variable "subnet_cidr" {
@@ -24,15 +27,6 @@ variable "ec2" {
     instance_type = string
     name          = string
   }))
-}
-
-
-variable "dns_support_host" {
-  type = bool
-}
-
-variable "dns_support" {
-  type = bool
 }
 
 variable "ami_id" {
